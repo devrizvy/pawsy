@@ -1,0 +1,29 @@
+{
+  "name": "pawsy",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot run src/server.ts",
+    "format": "bunx biome format --write src ",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@types/node": "^25.0.3",
+    "@types/pg": "^8.16.0",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3",
+    "prisma": "^7.2.0",
+    "tsx": "^4.21.0"
+  }
+}
