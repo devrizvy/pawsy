@@ -1,7 +1,7 @@
-const createAdmin = async (payload : string) => {
+const registerUser = async (payload : string) => {
     console.log(payload)
 }
 
 export const userServices = {
-    createAdmin
+    registerUser
 }
