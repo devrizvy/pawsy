@@ -8,7 +8,7 @@ export const globalErrorHandler = (
 ) => {
   res.status(status.INTERNAL_SERVER_ERROR).json({
     success: false,
-    message: err.name || "An error occured gng ! ",
+    message: err.message || "An error occured gng ! ",
     error: err,
   });
 };

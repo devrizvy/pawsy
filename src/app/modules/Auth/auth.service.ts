@@ -1,8 +1,9 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "../../../lib/prisma";
+import config from "../../../config";
 
 const register = async (payload: any) => {
-  const hashedPass: string = await bcrypt.hash(payload.password, 9);
+  const hashedPass = await bcrypt.hash(payload.password, 9);
   console.log("hashed", payload.password, { hashedPass });
 
   const userData = {
@@ -21,18 +22,24 @@ const register = async (payload: any) => {
 const login = async (payload: { email: string; password: string }) => {
   console.log("from Servies", payload);
 
-  const isUserExits = await prisma.user.findFirstOrThrow({
+  const userData = await prisma.user.findFirstOrThrow({
     where: {
       email: payload.email,
     },
   });
-  if (!isUserExits) {
+  if (!userData) {
     throw new Error("The user dosen't exists ! ");
   }
 
-  
+  const isPasswordCorrect: boolean = await bcrypt.compare(
+    payload.password,
+    userData.password
+  );
+  if (!isPasswordCorrect) {
+    throw new Error("The password is incorrect !");
+  }
 
-  console.log(isUserExits);
+  console.log(userData);
 };
 
 export const authServices = {
