@@ -9,7 +9,7 @@ const generateToken = (
 };
 
 const verifyToken = (token: any, secret: jwt.Secret) => {
-  return jwt.verify(token, secret) as jwt.JwtPayload;
+  return jwt.verify(token, secret);
 };
 
 export const jwtHelper = {

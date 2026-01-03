@@ -43,7 +43,7 @@ const login = async (payload: { email: string; password: string }) => {
 
   const accessToken = jwtHelper.generateToken(
     userData,
-    config.jwt.jwt_secrect as Secret,
+    config.jwt.jwt_secret as Secret,
     config.jwt.jwt_access_token_expires_in as string
   );
   console.log(accessToken);
