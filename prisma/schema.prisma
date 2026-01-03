@@ -20,13 +20,13 @@ model User {
   password         String
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
-  adoptionRequests adoptionRequest[]
+  adoptionRequests AdoptionRequest[]
 
   @@map("user")
 }
 
-model pet {
-  id                   String  @id @default(uuid())
+model Pet {
+  id                   String @id @default(uuid())
   name                 String
   species              String
   breed                String
@@ -40,16 +40,16 @@ model pet {
 
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
-  adoptionRequests adoptionRequest[]
+  adoptionRequests AdoptionRequest[]
 
   @@map("pet")
 }
 
-model adoptionRequest {
+model AdoptionRequest {
   id                     String   @id @default(uuid())
   user                   User     @relation(fields: [userId], references: [id])
   userId                 String
-  pet                    pet      @relation(fields: [petId], references: [id])
+  pet                    Pet      @relation(fields: [petId], references: [id])
   petId                  String
   status                 Status   @default(PENDING)
   petOwnershipExperience String

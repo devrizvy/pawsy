@@ -4,7 +4,8 @@ import { sendResponse } from "../../../shared/sendResponse";
 import { perServices } from "./pet.service";
 
 const createPet = catchAsync(async (req, res, next) => {
-  const result = perServices.createPet(req.body);
+  const result = await perServices.createPet(req.body);
+  console.log("ddd",result)
   sendResponse(res, {
     statusCode: status.OK,
     success: true,
