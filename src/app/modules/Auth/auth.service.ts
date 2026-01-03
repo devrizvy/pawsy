@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { prisma } from "../../../lib/prisma";
 
 const register = async (payload: any) => {
@@ -18,12 +18,21 @@ const register = async (payload: any) => {
   return result;
 };
 
-const login = async (payload: {email : string , password : string}) => {
-  console.log("from Servies" , payload );
+const login = async (payload: { email: string; password: string }) => {
+  console.log("from Servies", payload);
+
+  const isUserExits = await prisma.user.findFirstOrThrow({
+    where: {
+      email: payload.email,
+    },
+  });
+  if (!isUserExits) {
+    throw new Error("The user dosen't exists ! ");
+  }
 
   
 
-
+  console.log(isUserExits);
 };
 
 export const authServices = {
