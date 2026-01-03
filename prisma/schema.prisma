@@ -13,19 +13,60 @@ datasource db {
   provider = "postgresql"
 }
 
-
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id               String            @id @default(uuid())
+  name             String
+  email            String            @unique
+  password         String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  adoptionRequests adoptionRequest[]
+
+  @@map("user")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model pet {
+  id                   String  @id @default(uuid())
+  name                 String
+  species              String?
+  breed                Boolean @default(false)
+  age                  Int
+  size                 Size
+  location             String
+  description          String
+  temperament          String
+  medicalHistory       String
+  adoptionRequirements String
+
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  adoptionRequests adoptionRequest[]
+
+  @@map("pet")
+}
+
+model adoptionRequest {
+  id                     String   @id @default(uuid())
+  user                   User     @relation(fields: [userId], references: [id])
+  userId                 String
+  pet                    pet      @relation(fields: [petId], references: [id])
+  petId                  String
+  status                 Status   @default(PENDING)
+  petOwnershipExperience String
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@map("adoptionRequest")
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum Size {
+  small
+  medium
+  large
 }
