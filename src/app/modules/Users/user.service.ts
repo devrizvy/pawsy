@@ -1,7 +1,7 @@
-const registerUser = async (payload : string) => {
+const getUsers = async (payload : string) => {
     console.log(payload)
 }
 
 export const userServices = {
-    registerUser
+    getUsers
 }
