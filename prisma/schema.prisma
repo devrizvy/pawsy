@@ -28,8 +28,8 @@ model User {
 model pet {
   id                   String  @id @default(uuid())
   name                 String
-  species              String?
-  breed                Boolean @default(false)
+  species              String
+  breed                String
   age                  Int
   size                 Size
   location             String
