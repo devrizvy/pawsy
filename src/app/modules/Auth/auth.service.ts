@@ -1,4 +1,4 @@
-const register = async (payload: any) => {
+const register = async (payload: any)  => {
   console.log("from Servies ");
 };
 
