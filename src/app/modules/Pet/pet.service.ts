@@ -1,15 +1,27 @@
 import { prisma } from "../../../lib/prisma";
 
 const createPet = async (payload: any) => {
-  console.log(payload);
-  
-  const result = await prisma.pet.create({
-    data: payload,
-  });
+	console.log(payload);
 
-  return result;
+	const result = await prisma.pet.create({
+		data: payload,
+	});
+
+	return result;
+};
+const getSinglePet = async (petId: string) => {
+	console.log(petId);
+
+	const result = await prisma.pet.findFirstOrThrow({
+		where: {
+			id: petId,
+		},
+	});
+
+	return result;
 };
 
 export const perServices = {
-  createPet,
+	createPet,
+	getSinglePet,
 };

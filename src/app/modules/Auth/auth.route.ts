@@ -5,9 +5,9 @@ import { userValidationSchema } from "../Users/user.validation";
 const router = express.Router();
 
 router.post(
-  "/register",
-  validateRequest(userValidationSchema.userValidation),
-  authController.register
+	"/register",
+	validateRequest(userValidationSchema.userValidation),
+	authController.register,
 );
 router.post("/login", authController.login);
 

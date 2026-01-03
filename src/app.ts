@@ -1,8 +1,8 @@
 import express, {
-  type Application,
-  type NextFunction,
-  type Request,
-  type Response,
+	type Application,
+	type NextFunction,
+	type Request,
+	type Response,
 } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -19,9 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/", router);
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send({
-    Message: "Pawsy's server is running ! ",
-  });
+	res.send({
+		Message: "Pawsy's server is running ! ",
+	});
 });
 
 app.use(globalErrorHandler);

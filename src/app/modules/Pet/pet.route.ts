@@ -5,10 +5,18 @@ import { petValidationSchema } from "./pet.validation";
 import auth from "../../middlewares/auth";
 const router = express.Router();
 
-router.use(
-  "/", auth(), 
-  validateRequest(petValidationSchema.petValidation),
-  petControllers.createPet
+router.post(
+	"/",
+	auth(),
+	validateRequest(petValidationSchema.petValidation),
+	petControllers.createPet,
+);
+
+router.get(
+	"/:petId",
+	auth(),
+	validateRequest(petValidationSchema.petValidation),
+	petControllers.getSinglePet,
 );
 
 export const petRoutes = router;

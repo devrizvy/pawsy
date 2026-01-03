@@ -6,18 +6,18 @@ import { petRoutes } from "../modules/Pet/pet.route";
 const router = express.Router();
 
 const moduleRoutes = [
-  {
-    path: "/",
-    route: authRoutes,
-  },
-  {
-    path: "/user",
-    route: userRoutes,
-  },
-  {
-    path: "/pets",
-    route: petRoutes,
-  },
+	{
+		path: "/",
+		route: authRoutes,
+	},
+	{
+		path: "/user",
+		route: userRoutes,
+	},
+	{
+		path: "/pets",
+		route: petRoutes,
+	},
 ];
 
 // to match this syntex : router.use("/admin" , adminRoutes)

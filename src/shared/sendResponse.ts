@@ -1,10 +1,10 @@
 import type { Response } from "express";
 
 type TResponse<T> = {
-  statusCode: number;
-  success: boolean;
-  message?: string;
-  data: T;
+	statusCode: number;
+	success: boolean;
+	message?: string;
+	data: T;
 };
 
 // export const sendResponse = <T>(res: Response, data: TResponse<T>) => {
@@ -16,17 +16,17 @@ type TResponse<T> = {
 // };
 
 export const sendResponse = <T>(
-  res: Response,
-  data: {
-    statusCode: number;
-    success: boolean;
-    message?: string;
-    data: T;
-  }
+	res: Response,
+	data: {
+		statusCode: number;
+		success: boolean;
+		message?: string;
+		data: T;
+	},
 ) => {
-  res.status(data?.statusCode).json({
-    success: data.success,
-    message: data.message,
-    data: data.data,
-  });
+	res.status(data?.statusCode).json({
+		success: data.success,
+		message: data.message,
+		data: data.data,
+	});
 };
