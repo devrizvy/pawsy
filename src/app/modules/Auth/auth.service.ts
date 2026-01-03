@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "../../../lib/prisma";
 import config from "../../../config";
+import { jwtHelper } from "../../../helper/jwtHelper";
+import type { Secret } from "jsonwebtoken";
 
 const register = async (payload: any) => {
   const hashedPass = await bcrypt.hash(payload.password, 9);
@@ -39,7 +41,22 @@ const login = async (payload: { email: string; password: string }) => {
     throw new Error("The password is incorrect !");
   }
 
-  console.log(userData);
+  const accessToken = jwtHelper.generateToken(
+    userData,
+    config.jwt.jwt_secrect as Secret,
+    config.jwt.jwt_access_token_expires_in as string
+  );
+  console.log(accessToken);
+
+  const refreshToken = jwtHelper.generateToken(
+    userData,
+    config.jwt.refresh_token_secrect as Secret,
+    config.jwt.refresh_token_expires_in as string
+  );
+  console.log(refreshToken);
+  return {
+    ...userData , accessToken, refreshToken
+  }
 };
 
 export const authServices = {
