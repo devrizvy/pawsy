@@ -6,17 +6,14 @@ import auth from "../../middlewares/auth";
 const router = express.Router();
 
 router.post(
-	"/",
-	auth(),
-	validateRequest(petValidationSchema.petValidation),
-	petControllers.createPet,
+  "/",
+  auth(),
+  validateRequest(petValidationSchema.petValidation),
+  petControllers.createPet
 );
 
-router.get(
-	"/:petId",
-	auth(),
-	validateRequest(petValidationSchema.petValidation),
-	petControllers.getSinglePet,
-);
+router.get("/", auth(), petControllers.getAllPetFromDB);
+
+router.get("/:petId", auth(), petControllers.getSinglePet);
 
 export const petRoutes = router;

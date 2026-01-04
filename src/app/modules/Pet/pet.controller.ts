@@ -3,6 +3,15 @@ import catchAsync from "../../../shared/catchAsync";
 import { sendResponse } from "../../../shared/sendResponse";
 import { perServices } from "./pet.service";
 
+const getAllPetFromDB = catchAsync(async (req, res, next) => {
+	const result = await perServices.getAllPetFromDB();
+	sendResponse(res, {
+		statusCode: status.OK,
+		success: true,
+		message: "Pets retrived succesfully",
+		data: result,
+	});
+});
 const createPet = catchAsync(async (req, res, next) => {
 	const result = await perServices.createPet(req.body);
 	sendResponse(res, {
@@ -26,5 +35,5 @@ const getSinglePet = catchAsync(async (req, res, next) => {
 
 export const petControllers = {
 	createPet,
-	getSinglePet,
+	getSinglePet,getAllPetFromDB
 };
