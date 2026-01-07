@@ -1,5 +1,4 @@
 # pawsy
-
 To install dependencies:
 
 ```bash

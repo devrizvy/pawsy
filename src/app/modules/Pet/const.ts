@@ -1,0 +1,1 @@
+export const petSearchableFileds = ["name" , "species"]

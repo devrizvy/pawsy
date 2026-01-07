@@ -1,7 +1,41 @@
+import type { Prisma } from "../../../../generated/prisma/client";
 import { prisma } from "../../../lib/prisma";
+import { petSearchableFileds } from "./const";
 
-const getAllPetFromDB = async () => {
- console.log("first")
+const getAllPetFromDB = async (pamras: any) => {
+  console.log("services : ", pamras);
+  const { searchTerm, ...filterData } = pamras;
+  console.log(filterData);
+  const andConditons: Prisma.petWhereInput[] = [];
+  // ?Searching
+  if (pamras.searchTerm) {
+    andConditons.push({
+      OR: petSearchableFileds.map((field) => ({
+        [field]: {
+          contains: pamras.searchTerm,
+          mode: "insensitive",
+        },
+      })),
+    });
+  }
+  // ?Filtering
+  if (Object.keys(filterData).length > 0) {
+    andConditons.push({
+      AND: Object.keys(filterData).map((key) => ({
+        [key]: {
+          equals: filterData[key],
+        },
+      })),
+    });
+  }
+
+  const whereCondition: Prisma.petWhereInput = { AND: andConditons };
+
+  //   *Final sending result ;
+  const result = await prisma.pet.findMany({
+    where: whereCondition,
+  });
+  return result;
 };
 
 const createPet = async (payload: any) => {

@@ -4,7 +4,8 @@ import { sendResponse } from "../../../shared/sendResponse";
 import { perServices } from "./pet.service";
 
 const getAllPetFromDB = catchAsync(async (req, res, next) => {
-	const result = await perServices.getAllPetFromDB();
+	console.log("controller : " , req.query)
+	const result = await perServices.getAllPetFromDB(req.query);
 	sendResponse(res, {
 		statusCode: status.OK,
 		success: true,
