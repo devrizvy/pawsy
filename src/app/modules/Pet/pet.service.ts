@@ -3,9 +3,9 @@ import { prisma } from "../../../lib/prisma";
 import { petSearchableFileds } from "./const";
 
 const getAllPetFromDB = async (pamras: any) => {
-  console.log("services : ", pamras);
+  // console.log("services : ", pamras);
   const { searchTerm, ...filterData } = pamras;
-  console.log(filterData);
+  // console.log(filterData);
   const andConditons: Prisma.petWhereInput[] = [];
   // ?Searching
   if (pamras.searchTerm) {

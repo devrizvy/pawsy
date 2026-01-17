@@ -2,10 +2,10 @@
   "name": "pawsy",
   "module": "index.ts",
   "type": "module",
-  "private": true,
+  
   "scripts": {
     "dev": "bun --hot run src/server.ts",
-    "format": "bunx biome format --write src ",
+    "format": "bunx biome format --write src",
     "generate": "bunx prisma generate",
     "migrate": "bunx prisma migrate dev"
   },
