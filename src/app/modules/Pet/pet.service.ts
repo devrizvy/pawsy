@@ -72,6 +72,14 @@ const createPet = async (payload: any) => {
 
 const updatePet = async (petId: string, payload: any) => {
   console.log("FROM SERVICE : ", petId, payload);
+  const result = await prisma.pet.update({
+    where: {
+      id: petId,
+    },
+    data: payload,
+  });
+
+  return result;
 };
 
 const getSinglePet = async (petId: string) => {
