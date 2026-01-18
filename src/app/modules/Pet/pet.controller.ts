@@ -7,14 +7,14 @@ import { petFilterableFileds } from "./const";
 
 const getAllPetFromDB = catchAsync(async (req, res, next) => {
   const filters = pick(req.query, petFilterableFileds);
-  const options = pick (req.query , ["limit" , "page" , "sortBy", "sortOrder"])
-  console.log("options :", options)
+  const options = pick(req.query, ["limit", "page", "sortBy", "sortOrder"]);
+  console.log("options :", options);
   const result = await perServices.getAllPetFromDB(filters, options);
   sendResponse(res, {
     statusCode: status.OK,
     success: true,
     message: "Pets retrived succesfully",
-    meta : result.meta, 
+    meta: result.meta,
     data: result.data,
   });
 });
@@ -28,11 +28,18 @@ const createPet = catchAsync(async (req, res, next) => {
   });
 });
 
-const updatePet = catchAsync(async (req , res ) => {
-  
-  const 
-  
-})
+const updatePet = catchAsync(async (req, res) => {
+  const { petId } = req.params;
+  const data = req.body;
+  console.log("FROM CONTROLLER : ", { petId, data });
+  const result = await perServices.updatePet(petId as string, data);
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: "Pet data updated succesfully",
+    data: result,
+  });
+});
 
 const getSinglePet = catchAsync(async (req, res, next) => {
   const { petId } = req.params;
@@ -49,4 +56,5 @@ export const petControllers = {
   createPet,
   getSinglePet,
   getAllPetFromDB,
+  updatePet,
 };

@@ -69,6 +69,11 @@ const createPet = async (payload: any) => {
 
   return result;
 };
+
+const updatePet = async (petId: string, payload: any) => {
+  console.log("FROM SERVICE : ", petId, payload);
+};
+
 const getSinglePet = async (petId: string) => {
   console.log(petId);
 
@@ -85,4 +90,5 @@ export const perServices = {
   createPet,
   getSinglePet,
   getAllPetFromDB,
+  updatePet,
 };

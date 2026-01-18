@@ -9,12 +9,16 @@ router.post(
   "/",
   auth(),
   validateRequest(petValidationSchema.petValidation),
-  petControllers.createPet
+  petControllers.createPet,
 );
 
 router.get("/", auth(), petControllers.getAllPetFromDB);
 
 router.get("/:petId", auth(), petControllers.getSinglePet);
-router.put("/:petId" , )
+router.put(
+  "/:petId",
+  validateRequest(petValidationSchema.petUpdateValidation),
+  petControllers.updatePet,
+);
 
 export const petRoutes = router;
