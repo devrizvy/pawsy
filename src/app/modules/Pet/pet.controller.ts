@@ -28,6 +28,12 @@ const createPet = catchAsync(async (req, res, next) => {
   });
 });
 
+const updatePet = catchAsync(async (req , res ) => {
+  
+  const 
+  
+})
+
 const getSinglePet = catchAsync(async (req, res, next) => {
   const { petId } = req.params;
   const result = await perServices.getSinglePet(petId as string);
