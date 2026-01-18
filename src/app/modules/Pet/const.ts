@@ -1,2 +1,2 @@
-export const petFilterableFileds = ["breed", "species", "searchTerm"];
-export const petSearchableFileds = ["breed", "species", "searchTerm"];
+export const petFilterableFileds = ["breed", "species","age","size","location" ,"searchTerm"];
+export const petSearchableFileds = ["breed", "species", "name",];

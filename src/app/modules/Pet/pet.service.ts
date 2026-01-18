@@ -47,7 +47,17 @@ const getAllPetFromDB = async (pamras: any, options: any) => {
             createdAt: "desc",
           },
   });
-  return result;
+  const total = await prisma.pet.count({
+    where: whereCondition,
+  });
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
 };
 
 const createPet = async (payload: any) => {

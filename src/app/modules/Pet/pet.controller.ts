@@ -14,7 +14,8 @@ const getAllPetFromDB = catchAsync(async (req, res, next) => {
     statusCode: status.OK,
     success: true,
     message: "Pets retrived succesfully",
-    data: result,
+    meta : result.meta, 
+    data: result.data,
   });
 });
 const createPet = catchAsync(async (req, res, next) => {
