@@ -2,21 +2,13 @@ import status from "http-status";
 import catchAsync from "../../../shared/catchAsync";
 import { sendResponse } from "../../../shared/sendResponse";
 import { perServices } from "./pet.service";
-import { object } from "zod";
+import pick from "../../../shared/pick";
 
-const pick = (obj , keys) => {
-	console.log("fuckyou ",obj, keys)
-	for(const key of keys){
-		if(obj && Object.hasOwnProperty.call(obj, key)){
-			console.log(key)
-		}
-	}
-};
+
 
 const getAllPetFromDB = catchAsync(async (req, res, next) => {
-  pick(req.query, ["name", "email", "searchTerm"]);
-//   console.log("controller : ", req.query);
-  const result = await perServices.getAllPetFromDB(req.query);
+  const filter = pick(req.query, ["breed", "species", "searchTerm"]);
+  const result = await perServices.getAllPetFromDB(filter);
   sendResponse(res, {
     statusCode: status.OK,
     success: true,
