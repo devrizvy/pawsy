@@ -34,6 +34,11 @@ const getAllPetFromDB = async (pamras: any, options: any) => {
   //   *Final sending result ;
   const result = await prisma.pet.findMany({
     where: whereCondition,
+    skip: (Number(page) - 1) * limit,
+    take: Number(limit),
+    orderBy: {
+      createdAt : "desc"
+    }
   });
   return result;
 };
