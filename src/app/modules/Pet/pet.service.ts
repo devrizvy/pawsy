@@ -1,9 +1,11 @@
 import type { Prisma } from "../../../../generated/prisma/client";
+import { paginationHelpers } from "../../../helper/paginationHelper";
 import { prisma } from "../../../lib/prisma";
 import { petSearchableFileds } from "./const";
 
 const getAllPetFromDB = async (pamras: any, options: any) => {
-  const { limit, page } = options;
+  const { page, limit, skip, sortBy, sortOrder } =
+    paginationHelpers.calculatePagination(options);
 
   const { searchTerm, ...filterData } = pamras;
   const andConditons: Prisma.petWhereInput[] = [];
@@ -34,8 +36,8 @@ const getAllPetFromDB = async (pamras: any, options: any) => {
   //   *Final sending result ;
   const result = await prisma.pet.findMany({
     where: whereCondition,
-    skip: (Number(page) - 1) * limit,
-    take: Number(limit),
+    skip: skip,
+    take: limit,
     orderBy:
       options.sortBy && options.sortOrder
         ? {
