@@ -4,8 +4,6 @@ import { sendResponse } from "../../../shared/sendResponse";
 import { perServices } from "./pet.service";
 import pick from "../../../shared/pick";
 
-
-
 const getAllPetFromDB = catchAsync(async (req, res, next) => {
   const filter = pick(req.query, ["breed", "species", "searchTerm"]);
   const result = await perServices.getAllPetFromDB(filter);
