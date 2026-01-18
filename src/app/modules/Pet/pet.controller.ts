@@ -7,7 +7,7 @@ import { petFilterableFileds } from "./const";
 
 const getAllPetFromDB = catchAsync(async (req, res, next) => {
   const filters = pick(req.query, petFilterableFileds);
-  const options = pick (req.query , ["limit" , "page"])
+  const options = pick (req.query , ["limit" , "page" , "sortBy", "sortOrder"])
   console.log("options :", options)
   const result = await perServices.getAllPetFromDB(filters, options);
   sendResponse(res, {

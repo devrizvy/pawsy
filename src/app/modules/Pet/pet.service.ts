@@ -36,9 +36,14 @@ const getAllPetFromDB = async (pamras: any, options: any) => {
     where: whereCondition,
     skip: (Number(page) - 1) * limit,
     take: Number(limit),
-    orderBy: {
-      createdAt : "desc"
-    }
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? {
+            [options.sortBy]: options.sortOrder,
+          }
+        : {
+            createdAt: "desc",
+          },
   });
   return result;
 };
