@@ -1,9 +1,24 @@
+import status from "http-status";
 import catchAsync from "../../../shared/catchAsync";
+import { sendResponse } from "../../../shared/sendResponse";
+import { userServices } from "./user.service";
 
 const getUsers = catchAsync(async (req, res, next) => {
-	console.log(req.body);
+  console.log(req.body);
+});
+
+const getMe = catchAsync(async (req, res) => {
+  const token = req.headers.authorization;
+  const result = await userServices.getMe(token as string);
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: "User retrived succesfully",
+    data: result,
+  });
 });
 
 export const userController = {
-	getUsers,
+  getUsers,
+  getMe,
 };
