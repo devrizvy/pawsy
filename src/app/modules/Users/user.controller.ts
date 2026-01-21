@@ -18,7 +18,19 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
+const UpdateUserInfo = catchAsync(async (req, res) => {
+  const token = req.headers.authorization;
+  const result = await userServices.userInfoUpdate(token as string, req.body);
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: "User info updated succesfully",
+    data: result,
+  });
+});
+
 export const userController = {
   getUsers,
   getMe,
+  UpdateUserInfo,
 };

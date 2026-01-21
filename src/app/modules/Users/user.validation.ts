@@ -9,7 +9,13 @@ const userValidation = z.object({
 		}),
 	}),
 });
+const userInfoUpdateValidation = z.object({
+	body: z.object({
+			name: string().optional(),
+			email: string().optional(),
+	}),
+});
 
 export const userValidationSchema = {
-	userValidation,
+	userValidation,userInfoUpdateValidation
 };
