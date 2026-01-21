@@ -9,6 +9,12 @@ const petAdoptionRequest = z.object({
   }),
 });
 
+const updateAdoptionRequestStatus = z.object({
+  body: z.object({
+    status: z.enum(Status),
+  }),
+});
+
 export const petAdoptionRequestSchema = {
-  petAdoptionRequest,
+  petAdoptionRequest,updateAdoptionRequestStatus
 };

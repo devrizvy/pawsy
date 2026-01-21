@@ -50,10 +50,31 @@ const postAdoptionRequest = async (
 };
 
 const getAdoptionRequests = async () => {
-  const result = await prisma.adoptionRequest.findMany()
+  const result = await prisma.adoptionRequest.findMany();
+  return result;
+};
+
+const updateAdoptionRequestStatus = async (id: string, payload: any) => {
+  console.log(": ---> ", id, payload)
+  const isAdobtionExists = await prisma.adoptionRequest.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  if (!isAdobtionExists) {
+    throw new Error("NOT FOUND!");
+  }
+  const result = await prisma.adoptionRequest.update({
+    where: {
+      id: id,
+    },
+    data: payload,
+  });
   return result; 
-}
+};
 
 export const AdoptionServices = {
-  postAdoptionRequest,getAdoptionRequests
+  postAdoptionRequest,
+  getAdoptionRequests,
+  updateAdoptionRequestStatus,
 };

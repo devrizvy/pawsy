@@ -12,6 +12,10 @@ router.post(
   AdoptionController.postAdoptionRequest,
 );
 router.get("/", auth(), AdoptionController.getAdoptionRequests);
-// router.put("/:requestedId")
+router.put(
+  "/:requestedId",
+  validateRequest(petAdoptionRequestSchema.updateAdoptionRequestStatus),
+  AdoptionController.updateAdoptionRequestStatus,
+);
 
 export const adoptionRoutes = router;
