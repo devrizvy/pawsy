@@ -32,6 +32,8 @@ const getAllPetFromDB = async (pamras: any, options: any) => {
     });
   }
 
+  
+  
   const whereCondition: Prisma.petWhereInput = { AND: andConditons };
 
   //   *Final sending result ;

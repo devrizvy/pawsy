@@ -9,7 +9,7 @@ const postAdoptionRequest = catchAsync(async (req, res) => {
  	sendResponse(res, {
 		statusCode: status.OK,
 		success: true,
-		message: "User registerd succesfully",
+		message: "Adoption request submitted successfully",
 		data: result,
 	});
   
