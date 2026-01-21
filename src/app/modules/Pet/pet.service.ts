@@ -22,6 +22,7 @@ const getAllPetFromDB = async (pamras: any, options: any) => {
   }
   // ?Filtering
   if (Object.keys(filterData).length > 0) {
+    
     andConditons.push({
       AND: Object.keys(filterData).map((key) => ({
         [key]: {
