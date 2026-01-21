@@ -6,11 +6,12 @@ import auth from "../../middlewares/auth";
 const router = express.Router();
 
 router.post(
-  "/", auth(),
+  "/",
+  auth(),
   validateRequest(petAdoptionRequestSchema.petAdoptionRequest),
   AdoptionController.postAdoptionRequest,
 );
-// router.get("/")
+router.get("/", auth(), AdoptionController.getAdoptionRequests);
 // router.put("/:requestedId")
 
 export const adoptionRoutes = router;

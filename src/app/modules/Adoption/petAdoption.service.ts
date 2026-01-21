@@ -4,6 +4,7 @@ import { jwtHelper } from "../../../helper/jwtHelper";
 import { prisma } from "../../../lib/prisma";
 import type { TUser } from "../../interface/user";
 import type { TAdoptionRequest } from "../../interface/adoptionRequest";
+import catchAsync from "../../../shared/catchAsync";
 
 const postAdoptionRequest = async (
   payload: TAdoptionRequest,
@@ -48,6 +49,11 @@ const postAdoptionRequest = async (
   return adoptionRequest;
 };
 
+const getAdoptionRequests = async () => {
+  const result = await prisma.adoptionRequest.findMany()
+  return result; 
+}
+
 export const AdoptionServices = {
-  postAdoptionRequest,
+  postAdoptionRequest,getAdoptionRequests
 };
